@@ -8,12 +8,3 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-.game-container {
-  display: flex;
-  width: 600px;
-  height: 800px;
-  justify-content: center;
-  background-color: azure;
-  border-radius: 10px;
-}

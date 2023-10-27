@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Africa",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Africa_%28orthographic_projection%29.svg/800px-Africa_%28orthographic_projection%29.svg.png",
+        "correctAnswer": "Africa"
+    },
+    
+    {
+        "name": "Asia",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Asia_%28orthographic_projection%29.svg/800px-Asia_%28orthographic_projection%29.svg.png",
+        "correctAnswer": "Asia"
+    },
+    
+    {
+        "name": "Europe",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Europe_orthographic_Caucasus_Urals_boundary_%28with_borders%29.svg/800px-Europe_orthographic_Caucasus_Urals_boundary_%28with_borders%29.svg.png",
+        "correctAnswer": "Europe"
+    },
+    
+    {
+        "name": "North America",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Location_North_America.svg/800px-Location_North_America.svg.png",
+        "correctAnswer": "North America"
+    },
+    
+    {
+        "name": "South America",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/South_America_%28orthographic_projection%29.svg/800px-South_America_%28orthographic_projection%29.svg.png",
+        "correctAnswer": "South America"
+    },
+    
+    {
+        "name": "Australia",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Australia-New_Guinea_%28orthographic_projection%29.svg/800px-Australia-New_Guinea_%28orthographic_projection%29.svg.png",
+        "correctAnswer": "Australia"
+    },
+    
+    {
+        "name": "Antarctica",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Antarctica_%28orthographic_projection%29.svg/800px-Antarctica_%28orthographic_projection%29.svg.png",
+        "correctAnswer": "Antarctica"
+    }
+]

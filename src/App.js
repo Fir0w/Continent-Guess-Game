@@ -1,14 +1,12 @@
 import './App.css';
+import GameContainer from './components/GameContainer';
 
 function App() {
   return (
     <div className="App">
-      <div className="game-container">
-        <h1>Guess Game</h1>
-        <img src=""></img>
-      </div>
+      <GameContainer/>
     </div>
   );
-}
+};
 
 export default App;
