@@ -1,41 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import styles from './GameContainer.module.css';
-import { selectContinent } from './utils/utils.js';
+import { selectContinent } from './utils/utils.jsx';
 
 const GameContainer = () => {
-    const [selectedContinent, setSelectedContinent] = useState("");
-    const [randomAnswer, setRandomAnswer] = useState("");
+    // const [selectedContinent, setSelectedContinent] = useState("");
+    // const [randomAnswer, setRandomAnswer] = useState("");
     
+    // useEffect(() => {
+    //     generateContinent();
+    //     generateRandomAnswer();
+    // }, []);
+
+    // const generateContinent = () => {
+    //     const continentString = selectContinent();
+    //     if (continentString.name !== selectedContinent.name)
+    //         setSelectedContinent(continentString);
+    // };
+
+    // const generateRandomAnswer = () => {
+    //     const continentString = selectContinent();
+    //     if (continentString.name !== randomAnswer.name)
+    //         setRandomAnswer(continentString);
+    // };
+
+    // const checkAnswer = (answer) => {
+
+    //     const answerTrue = selectedContinent.correctAnswer;
+	
+    //     if (answerTrue === answer) {
+    //         console.log(answerTrue, answer);
+    //         generateRandomAnswer();
+    //         generateContinent();
+    //     } else if (answerTrue === answer) {
+    //         console.log(answerTrue, answer);
+    //         generateRandomAnswer();
+    //         generateContinent();
+    //     };
+    // };
+
+    const [selectedContinent, setSelectedContinent] = useState([])
+    const [appearedContinent, setAppearedContinent] = useState([])
+
     useEffect(() => {
         generateContinent();
-        generateRandomAnswer();
     }, []);
 
     const generateContinent = () => {
         const continentString = selectContinent();
-        if (continentString.name !== selectedContinent.name)
+        if (!appearedContinent.includes(continentString.name)) {
             setSelectedContinent(continentString);
+            setAppearedContinent((prevArray) => [...prevArray, continentString.name]);
+            console.log(appearedContinent);
+        } else if (appearedContinent.length <= 6)
+            generateContinent();
     };
 
-    const generateRandomAnswer = () => {
-        const continentString = selectContinent();
-        if (continentString.name !== randomAnswer.name)
-            setRandomAnswer(continentString);
-    };
-
-    const checkAnswer = (answer) => {
-
-        const answerTrue = selectedContinent.correctAnswer;
-	
-        if (answerTrue === answer) {
-            console.log(answerTrue, answer);
-            generateRandomAnswer();
+    const checkAnswer = (answer) => { 
+        if (answer === selectedContinent.correctAnswer) {
             generateContinent();
-        } else if (answerTrue === answer) {
-            console.log(answerTrue, answer);
-            generateRandomAnswer();
-            generateContinent();
-        };
+        } else console.log("False");
     };
 
     return (
@@ -46,8 +69,8 @@ const GameContainer = () => {
             </div>
             <h3>Guess the continent</h3>
             <div className={styles.Guess}>
-                <button onClick={() => checkAnswer(selectedContinent.name)}>{selectedContinent.name}</button>
-                <button onClick={() => checkAnswer(randomAnswer.name)}>{randomAnswer.name}</button>
+                <button onClick={() => checkAnswer(selectedContinent.name)}>{selectedContinent.name}</button> 
+                <button onClick={() => checkAnswer("Europe")}>{selectedContinent.name}</button>
             </div>
         </div>
     );

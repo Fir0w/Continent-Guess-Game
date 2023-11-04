@@ -32,3 +32,7 @@
   button:active {
     background-color: rgb(112, 112, 112);
   }
+
+  .count { 
+    text-align: center;
+  }
