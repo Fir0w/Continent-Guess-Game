@@ -1,3 +1,5 @@
+![ezgif com-video-to-gif](https://github.com/Fir0w/ex_45/assets/77929714/1c66678d-e9fe-436b-ac79-7afbb2fb535e)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
