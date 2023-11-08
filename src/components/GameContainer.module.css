@@ -13,7 +13,7 @@
     margin-bottom: 50px;
   }
 
-  .Guess {
+  .guess {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
@@ -35,4 +35,8 @@
 
   .count { 
     text-align: center;
+  }
+
+  .wrong {
+    background-color: rgb(160, 22, 22);
   }

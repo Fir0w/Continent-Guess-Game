@@ -3,75 +3,92 @@ import styles from './GameContainer.module.css';
 import { selectContinent } from './utils/utils.jsx';
 
 const GameContainer = () => {
-    // const [selectedContinent, setSelectedContinent] = useState("");
-    // const [randomAnswer, setRandomAnswer] = useState("");
-    
-    // useEffect(() => {
-    //     generateContinent();
-    //     generateRandomAnswer();
-    // }, []);
-
-    // const generateContinent = () => {
-    //     const continentString = selectContinent();
-    //     if (continentString.name !== selectedContinent.name)
-    //         setSelectedContinent(continentString);
-    // };
-
-    // const generateRandomAnswer = () => {
-    //     const continentString = selectContinent();
-    //     if (continentString.name !== randomAnswer.name)
-    //         setRandomAnswer(continentString);
-    // };
-
-    // const checkAnswer = (answer) => {
-
-    //     const answerTrue = selectedContinent.correctAnswer;
-	
-    //     if (answerTrue === answer) {
-    //         console.log(answerTrue, answer);
-    //         generateRandomAnswer();
-    //         generateContinent();
-    //     } else if (answerTrue === answer) {
-    //         console.log(answerTrue, answer);
-    //         generateRandomAnswer();
-    //         generateContinent();
-    //     };
-    // };
-
-    const [selectedContinent, setSelectedContinent] = useState([])
+    const [selectedContinent, setSelectedContinent] = useState(selectContinent())
     const [appearedContinent, setAppearedContinent] = useState([])
+    const [count, setCount] = useState(7)
+    const [end, setEnd] = useState(false)
 
     useEffect(() => {
         generateContinent();
     }, []);
 
     const generateContinent = () => {
-        const continentString = selectContinent();
-        if (!appearedContinent.includes(continentString.name)) {
-            setSelectedContinent(continentString);
-            setAppearedContinent((prevArray) => [...prevArray, continentString.name]);
-            console.log(appearedContinent);
-        } else if (appearedContinent.length <= 6)
+        const continentArray = selectContinent();
+        let continent = [];
+        let wasContinent = [];
+        continentArray.forEach((e) => {
+            if (!wasContinent.includes(e.name)) {
+                continent.push(e);
+                wasContinent.push(e.name);
+            }
+        });
+
+        console.log("appearedContinent:", appearedContinent);
+        console.log("continent:", continent[0].name);
+        
+        if (!appearedContinent.includes(continent[0].name)) {
+            setSelectedContinent(continentArray);
+            setAppearedContinent((prevArray) => [...prevArray, wasContinent[0]]);
+        } else if (appearedContinent.length < 7)
             generateContinent();
+        else if (appearedContinent.length === 7) {
+            setEnd(true);
+        };
     };
 
-    const checkAnswer = (answer) => { 
-        if (answer === selectedContinent.correctAnswer) {
+    const randomNumber = () => {
+        const randomNumbers = [0, 1];
+        const result = [];
+        
+        for (let i = 0; i < 2; i++) {
+            const randomIndex = Math.floor(Math.random() * randomNumbers.length);
+            const randomNumber = randomNumbers.splice(randomIndex, 1)[0];
+            result.push(randomNumber);
+        };
+
+        return result;
+    };
+
+    const handleAnswer = (id) => {
+        const answer = document.getElementById(id).innerHTML;
+
+        if (answer === selectedContinent[0].correctAnswer) {
             generateContinent();
-        } else console.log("False");
+        }
+        else {
+            setCount(e => e - 1);
+            generateContinent();
+        }
+    };
+
+    let x = randomNumber();
+
+    const reloadGame = () => {
+        setEnd(false);
+        setAppearedContinent([]);
+        setCount(7);
     };
 
     return (
         <div className={styles.gameContainer}>
             <h1>Guess Game</h1>
+            {end ? 
+            <>
             <div className={styles.img}>
-                <img src={selectedContinent.img} width="300" height="300" alt=""></img>
+                <h3>{`you guessed ${count}/7 correct`}</h3>
+            </div>
+            <button onClick={reloadGame}>Retry</button>
+            </> : 
+            <>
+            <div className={styles.img}>
+                <img src={selectedContinent[0].img} width="300" height="300" alt=""></img>
             </div>
             <h3>Guess the continent</h3>
-            <div className={styles.Guess}>
-                <button onClick={() => checkAnswer(selectedContinent.name)}>{selectedContinent.name}</button> 
-                <button onClick={() => checkAnswer("Europe")}>{selectedContinent.name}</button>
+            <div className={styles.guess}>
+                <button id="1" onClick={() => handleAnswer("1")}>{selectedContinent[x[0]].name}</button> 
+                <button id="2" onClick={() => handleAnswer("2")}>{selectedContinent[x[1]].name}</button>
             </div>
+            </>}
         </div>
     );
 };

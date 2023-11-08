@@ -3,7 +3,18 @@ import continentData from "../continents.json";
 export const selectContinent = () => {
 
 	let random = randomNumber();
-	return continentData[random];
+	let selectedContinents = [];
+	let i = 0;
+	let prevRandom;
+	while (i < 2) {
+		if (random !== prevRandom) {
+			selectedContinents.push(continentData[random]);
+			prevRandom = random;
+			i++;
+		} else random = randomNumber();
+	};
+
+	return selectedContinents;
 };
 
 const randomNumber = () => {
