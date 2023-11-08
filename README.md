@@ -1,4 +1,4 @@
-![ezgif com-video-to-gif](https://github.com/Fir0w/ex_45/assets/77929714/1c66678d-e9fe-436b-ac79-7afbb2fb535e)
+![ezgif com-video-to-gif](https://github.com/Fir0w/ex_45/assets/77929714/d8a6775c-021f-4668-8981-f33bc4b24bc8)
 
 # Getting Started with Create React App
 
