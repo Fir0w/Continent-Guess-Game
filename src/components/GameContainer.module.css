@@ -13,7 +13,7 @@
     margin-bottom: 50px;
   }
 
-  .Guess {
+  .guess {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
@@ -31,4 +31,12 @@
 
   button:active {
     background-color: rgb(112, 112, 112);
+  }
+
+  .count { 
+    text-align: center;
+  }
+
+  .wrong {
+    background-color: rgb(160, 22, 22);
   }

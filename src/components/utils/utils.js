@@ -1,13 +1,22 @@
 import continentData from "../continents.json";
 
-export const selectContinent = () => {
+export const selectTwoContinents = () => {
 
-	let random = randomNumber();
-	return  continentData[random];
+	let random = randomNumber(0, 7);
+	let selectedContinents = [continentData[random[0]], continentData[random[1]]];
+
+	return selectedContinents;
 };
 
-const randomNumber = () => {
+export const randomNumber = (min, max) => {
 	
-	let random = Math.floor(Math.random() * 7);
-	return random;
+	let randomOne = Math.floor(Math.random() * (max - min) + min);
+	let randomTwo = randomOne;
+	while (randomOne === randomTwo) {
+		randomTwo = Math.floor(Math.random() * (max - min) + min);
+	};
+
+	const randomReturn = [randomOne, randomTwo];
+
+	return randomReturn;
 };
