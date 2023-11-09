@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styles from './GameContainer.module.css';
-import { selectContinent } from './utils/utils.jsx';
+import { selectTwoContinents, randomNumber } from './utils/utils.js';
 
 const GameContainer = () => {
-    const [selectedContinent, setSelectedContinent] = useState(selectContinent())
-    const [appearedContinent, setAppearedContinent] = useState([])
-    const [count, setCount] = useState(7)
-    const [end, setEnd] = useState(false)
+    const [selectedContinent, setSelectedContinent] = useState(selectTwoContinents());
+    const [appearedContinent, setAppearedContinent] = useState([]);
+    const [radomizeAnswer, setRadomizeAnswer] = useState(randomNumber(0, 2))
+    const [count, setCount] = useState(7);
+    const [end, setEnd] = useState(false);
 
     useEffect(() => {
         generateContinent();
     }, []);
 
     const generateContinent = () => {
-        const continentArray = selectContinent();
+        const continentArray = selectTwoContinents();
         let continent = [];
         let wasContinent = [];
         continentArray.forEach((e) => {
             if (!wasContinent.includes(e.name)) {
                 continent.push(e);
                 wasContinent.push(e.name);
-            }
+            };
         });
-
-        console.log("appearedContinent:", appearedContinent);
-        console.log("continent:", continent[0].name);
         
         if (!appearedContinent.includes(continent[0].name)) {
             setSelectedContinent(continentArray);
@@ -34,34 +32,19 @@ const GameContainer = () => {
         else if (appearedContinent.length === 7) {
             setEnd(true);
         };
+
+        setRadomizeAnswer(randomNumber(0, 2))
     };
 
-    const randomNumber = () => {
-        const randomNumbers = [0, 1];
-        const result = [];
-        
-        for (let i = 0; i < 2; i++) {
-            const randomIndex = Math.floor(Math.random() * randomNumbers.length);
-            const randomNumber = randomNumbers.splice(randomIndex, 1)[0];
-            result.push(randomNumber);
-        };
-
-        return result;
-    };
-
-    const handleAnswer = (id) => {
-        const answer = document.getElementById(id).innerHTML;
+    const handleAnswer = (answer) => {
 
         if (answer === selectedContinent[0].correctAnswer) {
             generateContinent();
-        }
-        else {
+        } else {
             setCount(e => e - 1);
             generateContinent();
-        }
+        };
     };
-
-    let x = randomNumber();
 
     const reloadGame = () => {
         setEnd(false);
@@ -85,8 +68,8 @@ const GameContainer = () => {
             </div>
             <h3>Guess the continent</h3>
             <div className={styles.guess}>
-                <button id="1" onClick={() => handleAnswer("1")}>{selectedContinent[x[0]].name}</button> 
-                <button id="2" onClick={() => handleAnswer("2")}>{selectedContinent[x[1]].name}</button>
+                <button onClick={() => handleAnswer(selectedContinent[radomizeAnswer[0]].name)}>{selectedContinent[radomizeAnswer[0]].name}</button> 
+                <button onClick={() => handleAnswer(selectedContinent[radomizeAnswer[1]].name)}>{selectedContinent[radomizeAnswer[1]].name}</button>
             </div>
             </>}
         </div>
