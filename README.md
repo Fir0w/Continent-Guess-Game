@@ -1,4 +1,5 @@
-![ezgif com-video-to-gif](https://github.com/Fir0w/ex_45/assets/77929714/d8a6775c-021f-4668-8981-f33bc4b24bc8)
+
+![ezgif com-video-to-gif](https://github.com/Fir0w/Continent-Guess-Game/assets/77929714/1e4e9695-4046-4e0f-8823-313dd1e602db)
 
 # Getting Started with Create React App
 
